@@ -1,0 +1,61 @@
+<form action="" class="generic-form" method="post">
+    <fieldset>
+        <legend>Adresse de livraison et facturation</legend>
+        <aside class="error-message hidden">
+            <h3>Il des erreurs dans votre formulaire</h3>
+            <ul>
+                <?php if (!empty($errorMessage)): ?>
+                    <li><?= $errorMessage ?></li>
+                <?php endif ?>
+            </ul>
+        </aside>
+
+        <ul>
+            <li class="required">
+                <label for="FirstName">Prénom</label>
+                <input id="FirstName" type="text" name="FirstName" value="<?= $FirstName ?>" data-required data-name="prénom">
+            </li>
+            <li class="required">
+                <label for="LastName">Nom</label>
+                <input id="LastName" type="text" name="LastName" value="<?= $LastName ?>" data-required data-name="nom">
+            </li>
+            <li class="required">
+                <label for="Phone">Téléphone</label>
+                <input id="Phone" type="text" name="Phone" value="<?= $Phone ?>" data-type="positiveInteger" data-name="téléphone" data-max-length="10">
+            </li>
+            <li class="required">
+                <label for="Address">Adresse</label>
+                <input id="Address" type="text" name="Address" value="<?= $Address ?>">
+            </li>
+            <li class="required">
+                <label for="City">Ville</label>
+                <input id="City" type="text" name="City" value="<?= $City ?>">
+            </li>
+            <li class="required">
+                <label for="ZipCode">codePostal</label>
+                <input id="ZipCode" type="text" name="ZipCode" value="<?= $ZipCode ?>" data-type="positiveInteger" data-name="code postal" data-max-length="5" data-min-length="5">
+            </li>
+            <li>
+                <button id="editAddress" class="button button-info" type="button">Edit</button>
+                <button class="button button-primary">Envoyer</button>
+            </li>
+        </ul>
+    </fieldset>
+</form>
+<script>
+    $(function(){
+        $('input').attr('disabled', 'disabled');
+    });
+
+    function onClickEditAddress(){
+        $('input').removeAttr('disabled');
+    }
+
+    $('#editAddress').click(onClickEditAddress);
+
+    //Nous sommes obligés de dé-disable les "input" pour qu'ils soient envoyés lors du "submit"
+    $('form').submit(function(){
+        $('input').removeAttr('disabled');
+    })
+
+</script>

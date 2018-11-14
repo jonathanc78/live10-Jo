@@ -1,0 +1,49 @@
+
+        meals
+---------------------
+- Id                int,AI,PRIMARY
+- Name              varchar(64)
+- Description       Text
+- Photo             varchar(32)
+- QuantityInStock   int(5)
+- BuyPrice          double
+- SalePrice         double
+
+
+       customers
+----------------------
+- Id                int,AI,PRIMARY
+- FirstName         varchar(32)
+- LastName          varchar(32)
+- Phone             char(10)
+- Email             varchar(64)
+- Password          varchar(64)
+- Address           varchar(128)
+- City              varchar(64)
+- ZipCode           char(5)
+- RegisterDate      datetime
+
+        orders
+----------------------
+- Id                int,AI,PRIMARY
+- Amount            double
+- OrderDate         datetime
+- Status            varchar(32)
+- Customer_Id       int
+
+     orderDetails
+----------------------
+- Id				int,AI,PRIMARY
+- Meal_Id           int
+- Quantity          int(4)
+- PriceEach         double
+- Order_Id          int
+
+        bookings
+----------------------
+- Id				int,AI,PRIMARY
+- Customer_Id       int
+- BookingDate       DateTime
+- Quantity          int(2),UNSIGNED
+
+**********************************************

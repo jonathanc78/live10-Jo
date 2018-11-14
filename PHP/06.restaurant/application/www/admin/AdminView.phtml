@@ -1,0 +1,44 @@
+<form action="" class="generic-form" method="post" enctype="multipart/form-data"
+>
+    <fieldset>
+        <legend>Formulaire d'ajout de produit </legend>
+        <aside class="error-message hidden">
+            <h3>Il des erreurs dans votre formulaire</h3>
+            <ul>
+                <?php if (!empty($errorMessage)): ?>
+                    <li><?= $errorMessage ?></li>
+                <?php endif ?>
+            </ul>
+        </aside>
+        <ul>
+            <li class="required">
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" value="<?= $name ?>" data-required >
+            </li>
+            <li class="required">
+                <label for="description">Description</label>
+                <input id="description" type="text" name="description" value="<?= $description ?>" data-required >
+            </li>
+            <li class="required">
+                <label for="photo">Photo</label>
+                <input id="photo" type="file" name="photo" value="<?= $photo ?>" data-required >
+            </li>
+            <li class="required">
+                <label for="quantityInStock">QuantityInStock</label>
+                <input id="quantityInStock" type="text" name="quantityInStock" value="<?= $quantityInStock ?>"  data-required >
+            </li>
+            <li  class="required">
+                <label for="buyPrice">BuyPrice</label>
+                <input id="buyPrice" type="text" name="buyPrice" value="<?= $buyPrice ?>" data-required>
+            </li>
+            <li  class="required">
+                <label for="salePrice">SalePrice</label>
+                <input id="salePrice" type="text" name="salePrice" value="<?= $salePrice ?>" data-required >
+            </li>
+
+            <li>
+                <button class="button button-primary">Envoyer</button>
+            </li>
+        </ul>
+    </fieldset>
+</form>

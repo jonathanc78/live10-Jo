@@ -1,0 +1,54 @@
+<form action="" class="generic-form" method="post">
+    <fieldset>
+        <legend>Formulaire de Reservation</legend>
+        <?php if (!empty($errorMessage)): ?>
+            <aside class="error-message">
+                <h3>Il des erreurs dans votre formulaire</h3>
+                <ul>
+                    <li><?= $errorMessage ?></li>
+                </ul>
+            </aside>
+        <?php endif ?>
+        <ul>
+            <!-- Date -->
+            <li>
+                <label for="date">Date</label>
+                <input id="date" name="date" class="datepicker">
+            </li>
+            <li>
+                <label for="hour">Heure : </label>
+                <select id="hour" name="hour">
+                    <?php for ($hour = 11; $hour <= 22; $hour++): ?>
+                        <option value="<?= $hour ?>"><?= $hour ?></option>
+                    <?php endfor ?>
+                </select>
+                :
+                <select name="minute">
+                    <?php for ($minutes = 00; $minutes <= 45; $minutes += 15): ?>
+                        <option value="<?= $minutes ?>"><?= $minutes ?></option>
+                    <?php endfor ?>
+                </select>
+            </li>
+            <li>
+                <label for="quantity">Nombre de Personnes</label>
+                <select id="quantity" name="quantity">
+                    <?php for ($quantity = 1; $quantity <= 20; $quantity++): ?>
+                        <option value="<?= $quantity ?>"><?= $quantity ?></option>
+                    <?php endfor ?>
+                </select>
+            </li>
+            <li>
+                <button class="button button-primary">Reserver</button>
+            </li>
+        </ul>
+    </fieldset>
+</form>
+
+<!-- on ne charge jqueryUI que dans cette page car il ne sert nulle part ailleur -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $(".datepicker").datepicker({"dateFormat": "yy-mm-dd"});
+    });
+</script>

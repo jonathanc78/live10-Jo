@@ -1,0 +1,51 @@
+<form action="" class="generic-form" method="post">
+    <fieldset>
+        <legend>Formulaire d'inscription</legend>
+        <aside class="error-message hidden">
+            <h3>Il des erreurs dans votre formulaire</h3>
+            <ul>
+                <?php if (!empty($errorMessage)): ?>
+                    <li><?= $errorMessage ?></li>
+                <?php endif ?>
+            </ul>
+        </aside>
+
+        <ul>
+            <li class="required">
+                <label for="firstName">Prénom</label>
+                <input id="firstName" type="text" name="firstName" value="<?= $firstName ?>" data-required data-name="prénom">
+            </li>
+            <li class="required">
+                <label for="lastName">Nom</label>
+                <input id="lastName" type="text" name="lastName" value="<?= $lastName ?>" data-required data-name="nom">
+            </li>
+            <li class="required">
+                <label for="email">Email</label>
+                <input id="email" type="text" name="email" value="<?= $email ?>" data-type="email" data-required data-name="e-mail">
+            </li>
+            <li class="required">
+                <label for="password">Mot de passe</label>
+                <input id="password" type="password" name="password" value="<?= $password ?>" data-type="password" data-required data-name="mot de passe" data-min-length="4">
+            </li>
+            <li>
+                <label for="phone">Téléphone</label>
+                <input id="phone" type="text" name="phone" value="<?= $phone ?>" data-type="positiveInteger" data-name="téléphone" data-max-length="10">
+            </li>
+            <li>
+                <label for="address">Adresse</label>
+                <input id="address" type="text" name="address" value="<?= $address ?>">
+            </li>
+            <li>
+                <label for="city">Ville</label>
+                <input id="city" type="text" name="city" value="<?= $city ?>">
+            </li>
+            <li>
+                <label for="zipCode">codePostal</label>
+                <input id="zipCode" type="text" name="zipCode" value="<?= $zipCode ?>" data-type="positiveInteger" data-name="code postal" data-max-length="5" data-min-length="5">
+            </li>
+            <li>
+                <button class="button button-primary">Envoyer</button>
+            </li>
+        </ul>
+    </fieldset>
+</form>

@@ -1,0 +1,59 @@
+<!-- Liste des produits alimentaires -->
+<table class="generic-table meal-list">
+    <caption>Carte du restaurant</caption>
+    <tbody>
+    <?php foreach ($meals as $meal): ?>
+        <tr>
+            <td><img src="<?= $wwwUrl ?>/images/meals/<?= $meal['Photo']; ?>" alt="<?= $meal['Name']; ?>"></td>
+            <td>
+                <strong><?= $meal['Name']; ?></strong>
+                <p><?= $meal['Description']; ?></p>
+            </td>
+            <td class="number">
+                <strong><?= number_format($meal['SalePrice'], 2) ?></strong> €
+                <a class="button button-primary cta add-to-cart" title="ajouter <?= $meal['Name']; ?> au panier"
+                   data-home="true"
+                   href="<?= $requestUrl ?>/cart?action=increase&mealId=<?= $meal['Id']; ?>&quantity=1&urlBack=<?= urlEncode('/') ?>"><i class="fa fa-plus-circle"></i></a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<em class="petit astérisque que personne ne voit">Les prix sont affichés hors taxe</em>
+
+<div id="modal" class="hidden">
+    <p></p>
+</div>
+
+<h2>Todo List</h2>
+<ul class="done">
+    <li>Customers - login</li>
+    <li>Customers - register</li>
+    <li>Traitement des erreurs</li>
+    <li>Sessions</li>
+    <li>Filtres d'interceptions</li>
+    <li>Réaffichage des données du formulaire</li>
+    <li>Flashbag</li>
+    <li>Customers - sécurisation des mot de passes</li>
+    <li>Reservations</li>
+    <li>Gestion des Url Rewriting</li>
+    <li>Validation des formulaire</li>
+    <li>Panier</li>
+    <li>Ajax</li>
+    <li>adresse de facturation et livraison</li>
+    <li>récapitulatif de la commande</li>
+</ul>
+<ul>
+    <li>Commandes</li>
+    <li>Paiement</li>
+    <li>Back Office - produits</li>
+    <li>Back Office - commandes</li>
+    <li>Back Office - customers</li>
+</ul>
+
+<ul>
+    <li>paiement</li>
+    <li>confirmation (merci à la semaine prochaine, bisous</li>
+</ul>
+<script src="<?= $wwwUrl ?>/js/classes/Cart.class.js"></script>

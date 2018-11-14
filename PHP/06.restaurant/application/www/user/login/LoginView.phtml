@@ -1,0 +1,30 @@
+<form action="" class="generic-form" method="post">
+
+
+    <fieldset>
+        <legend>Connectez vous</legend>
+
+        <aside class="error-message hidden">
+            <h3>Il des erreurs dans votre formulaire</h3>
+            <ul>
+                <?php if (!empty($errorMessage)): ?>
+                    <li><?= $errorMessage ?></li>
+                <?php endif ?>
+            </ul>
+        </aside>
+
+        <ul>
+            <li class="required">
+                <label for="email">Email</label>
+                <input id="email" type="text" name="email" value="<?= $email ?>" data-required>
+            </li>
+            <li class="required">
+                <label for="password">Mot de passe</label>
+                <input id="password" type="password" name="password" value="<?= $password ?>" data-required>
+            </li>
+            <li>
+                <button class="button button-primary">Envoyer</button>
+            </li>
+        </ul>
+    </fieldset>
+</form>

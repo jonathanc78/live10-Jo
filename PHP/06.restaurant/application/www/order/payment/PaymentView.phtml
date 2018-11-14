@@ -1,0 +1,51 @@
+    <p>Informations client</p>
+    <ul>
+        <li><?= $customer['FirstName']  ?> <?= $customer['LastName']  ?></li>
+        <li><?= $customer['Address']  ?></li>
+        <li><?= $customer['ZipCode']  ?>  <?= $customer['City']  ?></li>
+
+        <li>Tél : <?= $customer['Phone']  ?></li>
+
+    </ul>
+
+
+    <table class="generic-table">
+        <thead>
+        <caption>Details de la commande</caption>
+        <tr>
+            <th>Nom produit</th>
+            <th>Quantité commandée</th>
+            <th>Prix unitaire</th>
+            <th>Sous-total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($ordersDetails as $orderDetail) : ?>
+            <tr>
+                <td><?= $orderDetail["Name"] ?></td>
+                <td><?= $orderDetail["Quantity"] ?></td>
+                <td><?= number_format($orderDetail["SalePrice"],2) ?> €</td>
+                <td><?= number_format($orderDetail["Quantity"] * $orderDetail["SalePrice"], 2) ?> €</td>
+            </tr>
+
+        <?php endforeach ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <th>Total HT</th>
+                <td><?= number_format($totalPrice["ht"],2) ?> €</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <th>TVA</th>
+                <td><?= number_format($totalPrice["tva"],2) ?> €</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <th>Total TTC</th>
+                <td><?= number_format($totalPrice["ttc"],2) ?> €</td>
+            </tr>
+        </tfoot>
+    </table>
+         <button class="button button-primary" type="button">Valider</button>

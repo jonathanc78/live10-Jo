@@ -1,0 +1,71 @@
+<?php $cartItems = $cart->getAllMealInfos(); ?>
+<?php $totalPrices = $cart->getTotalPrices(); ?>
+
+<table id="cart" class="generic-table">
+    <thead>
+    <tr>
+        <th>image</th>
+        <th>nom</th>
+        <th>quantité</th>
+        <th>prix.u</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <td class="text-right" colspan="3">Prix HT</td>
+        <td id="htPrice"><?= number_format($totalPrices['ht'], 2) ?> €</td>
+    </tr>
+    <tr>
+        <td class="text-right" colspan="3">TVA</td>
+        <td id="tva"><?= number_format($totalPrices['tva'], 2) ?> €</td>
+    </tr>
+    <tr>
+        <td class="text-right" colspan="3">prix TTC</td>
+        <td id="ttcPrice"><?= number_format($totalPrices['ttc'], 2) ?> €</td>
+    </tr>
+    <tr>
+        <!--
+         "toute façon si y'a plus rien dans la panier faut rediriger vers l'accueuil"
+                                                                - Jonathan 09/11/2018
+        -->
+        <td colspan="2" class="left">
+            <a href="<?= $requestUrl ?>/cart?action=clearCart&urlBack=<?= urlencode("/") ?>" class="button button-cancel">Vider</a>
+        </td>
+        <td colspan="2">
+            <?php $disabled = count($cartItems) > 0 ? '' : 'disabled="disabled"' ?>
+            <a class="button button-primary" <?= $disabled ?> href="<?= $requestUrl ?>/order">Valider le panier</a>
+        </td>
+    </tr>
+    </tfoot>
+
+    <?php if (count($cartItems) > 0): ?>
+        <?php foreach ($cartItems as $mealId => $meal): ?>
+            <tr id="<?= $mealId ?>">
+                <td>
+                    <img src="<?= $wwwUrl ?>/images/meals/<?= $meal['Photo'] ?>" alt="<?= $meal['Name'] ?>">
+                </td>
+                <td>
+                    <?= $meal['Name'] ?>
+                </td>
+                <td class="quantity">
+                    <a class="minus add-to-cart" href="<?= $requestUrl ?>/cart?action=decrease&mealId=<?= $meal['Id']; ?>&quantity=1&urlBack=<?= urlEncode('/cart') ?>">
+                        <i class="fa fa-minus-circle"></i>
+                    </a>
+                    <input data-meal-id="<?= $meal['Id']; ?>" name="quantity" value="<?= $meal['Quantity'] ?>" data-name="quantité" data-type="positiveInteger">
+                    <a class="plus add-to-cart" href="<?= $requestUrl ?>/cart?action=increase&mealId=<?= $meal['Id']; ?>&quantity=1&urlBack=<?= urlEncode('/cart') ?>">
+                        <i class="fa fa-plus-circle"></i>
+                    </a>
+                </td>
+                <td>
+                    <?= number_format($meal['SalePrice'], 2) ?> €
+                </td>
+            </tr>
+        <?php endforeach ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="4" class="center">Vous n'avez pas encore de produit dans votre panier</td>
+        </tr>
+    <?php endif ?>
+</table>
+
+<script src="<?= $wwwUrl ?>/js/classes/Cart.class.js"></script>
